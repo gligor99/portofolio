@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useWindowSize } from "@/lib/useWindowSize";
 
 export const TextHoverEffect = ({
   text,
@@ -14,6 +15,8 @@ export const TextHoverEffect = ({
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+
+  const { width } = useWindowSize();
 
   useEffect(() => {
     if (svgRef.current && cursor.x !== null && cursor.y !== null) {
@@ -30,14 +33,14 @@ export const TextHoverEffect = ({
   return (
     <svg
       ref={svgRef}
-      width="100%"
-      height="100%"
+      width={width && width <= 640 ? "200%" : "100%"}
+      height={width && width <= 640 ? "200%" : "100%"}
       viewBox="0 0 500 100"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none"
+      className="select-none rotate-[80deg] sm:rotate-0 z-0"
     >
       <defs>
         <linearGradient
