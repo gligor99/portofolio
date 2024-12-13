@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gligor99.xyz/sitemap.xml
