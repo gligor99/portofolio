@@ -5,7 +5,6 @@ import { useWindowSize } from "@/lib/useWindowSize";
 
 export const TextHoverEffect = ({
   text,
-  duration,
 }: {
   text: string;
   duration?: number;
