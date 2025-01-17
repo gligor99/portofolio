@@ -89,3 +89,34 @@ a:hover {
     border-color: transparent;
   }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* Smaller font for tablets */
+  }
+
+  a {
+    font-size: 1.3rem; /* Adjust button font size for tablets */
+    padding: 8px 16px; /* Adjust padding */
+  }
+
+  .terminal {
+    font-size: 1rem; /* Adjust terminal font size */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem; /* Smaller font for mobile */
+  }
+
+  a {
+    font-size: 1rem; /* Adjust button font size for mobile */
+    padding: 6px 12px; /* Adjust padding */
+  }
+
+  .terminal {
+    font-size: 0.9rem; /* Smaller font size for terminal on mobile */
+  }
+}
