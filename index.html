@@ -1,54 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Luka Gligorevic's portfolio. Software Developer based in Bijeljina, Bosnia, specializing in web development and modern JavaScript frameworks.">
-    <meta name="keywords"
-        content="Luka Gligorevic, frontend developer, web development, software engineer, sofrware developer, JavaScript, TypeScript, Next.js, React, React Native, portfolio">
-    <meta name="author" content="Luka Gligorevic">
-    <meta property="og:title" content="@gligor99 - Portfolio">
-    <meta property="og:description"
-        content="Welcome to my digital realm. I'm a software developer specialized in modern web technologies.">
-    <!-- <meta property="og:image" content="https://www.gligor99.xyz/preview-image.jpg"> -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.gligor99.xyz">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#00FF00">
-    <title>@gligor99 - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="canonical" href="https://www.gligor99.xyz">
+    <!-- Primary Meta Tags -->
+    <title>Luka Gligorevic — Mobile & Frontend Developer | Resume</title>
+    <meta
+      name="title"
+      content="Luka Gligorevic — Mobile & Frontend Developer | Resume"
+    />
+    <meta
+      name="description"
+      content="Software Developer specializing in React Native (Expo), Next.js, and TypeScript. Building scalable mobile and web applications with expertise in frontend development, backend integration, and full-stack solutions."
+    />
+    <meta
+      name="keywords"
+      content="Luka Gligorevic, Mobile Developer, Frontend Developer, React Native, Expo, Next.js, TypeScript, React, Node.js, Software Developer, Web Developer, Resume, CV"
+    />
+    <meta name="author" content="Luka Gligorevic" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
 
-    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://gligor99.vercel.app/" />
+    <meta
+      property="og:title"
+      content="Luka Gligorevic — Mobile & Frontend Developer"
+    />
+    <meta
+      property="og:description"
+      content="Software Developer specializing in React Native (Expo), Next.js, and TypeScript. Building scalable mobile and web applications."
+    />
+    <meta
+      property="og:image"
+      content="https://gligor99.vercel.app/images/profile.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Luka" />
+    <meta property="profile:last_name" content="Gligorevic" />
+    <meta property="profile:username" content="lukagligorevic" />
 
-    <!-- Structured Data for Google -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Luka Gligorevic",
-      "url": "https://www.gligor99.xyz",
-      "sameAs": [
-        "https://github.com/gligor99",
-        "https://www.linkedin.com/in/lukagligorevic"
-      ],
-      "jobTitle": "Frontend Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Rhapsody Media"
-      }
-    }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://gligor99.vercel.app/" />
+    <meta
+      name="twitter:title"
+      content="Luka Gligorevic — Mobile & Frontend Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Software Developer specializing in React Native (Expo), Next.js, and TypeScript. Building scalable mobile and web applications."
+    />
+    <meta
+      name="twitter:image"
+      content="https://gligor99.vercel.app/images/profile.jpg"
+    />
+    <meta name="twitter:creator" content="@lukagligorevic" />
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://gligor99.vercel.app/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/profile.jpg" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "Inter",
+                "Arial",
+                "sans-serif",
+              ],
+            },
+          },
+        },
+      };
     </script>
-</head>
+  </head>
+  <body
+    class="m-0 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 min-h-screen py-8 md:py-12 text-[#111] text-base leading-[1.6] font-sans"
+  >
+    <div class="max-w-[900px] mx-auto px-4 md:px-6">
+      <div
+        class="bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200"
+      >
+        <div class="px-8 md:px-12 py-10 md:py-12">
+          <header
+            class="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-6 items-start md:items-end justify-between pb-6 mb-6 border-b-2 border-gray-200"
+          >
+            <div
+              class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full md:w-auto"
+            >
+              <img
+                src="images/profile.jpg"
+                alt="Luka Gligorevic - Mobile & Frontend Developer profile photo"
+                width="144"
+                height="144"
+                class="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full object-cover shadow-xl ring-4 ring-white flex-shrink-0 border-2 border-gray-100"
+              />
+              <div class="flex-1 min-w-0">
+                <h1
+                  class="m-0 text-3xl sm:text-4xl md:text-5xl leading-tight font-bold text-gray-900 tracking-tight"
+                >
+                  Luka Gligorevic
+                </h1>
+                <div class="text-lg md:text-xl text-gray-600 mt-2 font-medium">
+                  Mobile &amp; Frontend Developer
+                </div>
+              </div>
+            </div>
 
-<body>
-    <h1>@gligor99</h1>
-    <p class="terminal">> <span id="dynamic-text"></span></p>
-    <a href="mailto:gligor@mail.com">Contact Me</a>
+            <div
+              class="text-sm text-gray-600 flex flex-col gap-1.5 text-left md:text-right w-full md:w-auto"
+              aria-label="Contact"
+            >
+              <div>
+                <a
+                  href="mailto:gligor@mail.com"
+                  class="text-gray-700 hover:text-gray-900 no-underline hover:underline transition-colors"
+                  >gligor@mail.com</a
+                >
+              </div>
+              <div>
+                <a
+                  href="tel:+38766605909"
+                  class="text-gray-700 hover:text-gray-900 no-underline hover:underline transition-colors"
+                  >+38766605909</a
+                >
+              </div>
+              <div class="text-gray-600">Novi Sad, Serbia</div>
+              <div>
+                <a
+                  href="https://www.linkedin.com/in/lukagligorevic"
+                  class="text-gray-700 hover:text-gray-900 no-underline hover:underline transition-colors"
+                  >linkedin.com/in/lukagligorevic</a
+                >
+              </div>
+              <div>
+                <a
+                  href="https://github.com/gligor99"
+                  class="text-gray-700 hover:text-gray-900 no-underline hover:underline transition-colors"
+                  >github.com/gligor99</a
+                >
+              </div>
+            </div>
+          </header>
 
-    <script src="script.js"></script>
-</body>
+          <main
+            class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-10 mt-2"
+          >
+            <section class="pt-1">
+              <h2
+                class="mt-6 mb-4 text-xs font-bold tracking-widest uppercase text-gray-700 border-t-2 border-gray-200 pt-4 first:mt-0 first:border-t-0 first:pt-0"
+              >
+                Summary
+              </h2>
+              <p class="mb-3 text-gray-700 leading-relaxed">
+                Software Developer with a strong frontend focus, building and
+                shipping scalable mobile and web applications in production
+                environments.
+              </p>
+              <p class="mb-3 text-gray-700 leading-relaxed">
+                Specialised in React Native (Expo) and Next.js, with hands-on
+                experience integrating backend services using Node.js, FastAPI,
+                and AWS, and working with relational databases.
+              </p>
+              <p class="mb-3 text-gray-700 leading-relaxed">
+                I work end-to-end on features — from UI architecture, state
+                management, and performance optimisation to backend integration,
+                deployment, and app store releases. I collaborate closely with
+                product, design, and backend teams to deliver stable,
+                high-quality solutions with a strong focus on user experience.
+              </p>
 
+              <h2
+                class="mt-6 mb-4 text-xs font-bold tracking-widest uppercase text-gray-700 border-t-2 border-gray-200 pt-4"
+              >
+                Professional experience
+              </h2>
+              <h3 class="mt-1 mb-2 text-lg font-bold text-gray-900">
+                Software Developer,
+                <a
+                  href="https://rhapsodymedia.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-900 hover:text-blue-600 no-underline hover:underline transition-colors"
+                  >Rhapsody</a
+                >
+              </h3>
+              <div class="text-gray-600 text-sm flex gap-3 flex-wrap mb-3">
+                <span class="font-medium">06/2022 – Present</span>
+                <span class="text-gray-500">•</span>
+                <span>Remote</span>
+              </div>
+              <ul class="my-2 ml-6 pl-0 list-disc space-y-2">
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  Built and shipped production-ready mobile applications for iOS
+                  and Android.
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  Owned frontend development using React Native (Expo) and
+                  TypeScript.
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  Contributed to web application development using React and
+                  Next.js.
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  Contributed to assessment and cybersecurity-related platforms
+                  in production environments.
+                </li>
+              </ul>
+
+              <h2
+                class="mt-6 mb-4 text-xs font-bold tracking-widest uppercase text-gray-700 border-t-2 border-gray-200 pt-4"
+              >
+                Projects
+              </h2>
+              <h3 class="mt-1 mb-2 text-lg font-bold text-gray-900">
+                Pretty Perfect Products
+              </h3>
+              <div class="text-sm text-gray-600 mb-3 font-medium">
+                Consumer Mobile Application | Frontend Ownership (React Native /
+                Expo)
+              </div>
+              <p class="mb-3 text-gray-700 leading-relaxed">
+                Led frontend development for a production mobile application
+                built with React Native (Expo), covering authentication, push
+                notifications, subscriptions and in-app purchases, backend
+                integration, and app store deployments.
+              </p>
+            </section>
+
+            <section class="pt-1">
+              <h2
+                class="mt-6 mb-4 text-xs font-bold tracking-widest uppercase text-gray-700 border-t-2 border-gray-200 pt-4 first:mt-0 first:border-t-0 first:pt-0"
+              >
+                Skills
+              </h2>
+              <div class="flex flex-wrap gap-2.5" aria-label="Skills list">
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >React Native</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >Expo</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >TypeScript</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >Next.js</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >React</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >Node.js</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >FastAPI</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >REST / OpenAPI</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >AWS</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >SQL</span
+                >
+                <span
+                  class="inline-block px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 font-medium hover:bg-gray-100 hover:border-gray-300 transition-colors"
+                  >MongoDB</span
+                >
+              </div>
+
+              <h2
+                class="mt-6 mb-4 text-xs font-bold tracking-widest uppercase text-gray-700 border-t-2 border-gray-200 pt-4"
+              >
+                Education
+              </h2>
+              <h3 class="mt-1 mb-2 text-lg font-bold text-gray-900">
+                BSc Computer Science,
+                <a
+                  href="https://sinergija.edu.ba"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-gray-900 hover:text-blue-600 no-underline hover:underline transition-colors"
+                  >Sinergija University</a
+                >
+              </h3>
+              <div class="text-gray-600 text-sm flex gap-3 flex-wrap">
+                <span class="font-medium">10/2018 – 07/2022</span>
+                <span class="text-gray-500">•</span>
+                <span>Bijeljina, Bosnia and Herzegovina</span>
+              </div>
+
+              <h2
+                class="mt-6 mb-4 text-xs font-bold tracking-widest uppercase text-gray-700 border-t-2 border-gray-200 pt-4"
+              >
+                Certificates
+              </h2>
+              <ul class="my-2 ml-6 pl-0 list-disc space-y-2">
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://freecodecamp.org/certification/lukag99/responsive-web-design"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >Responsive Web Design</a
+                  >
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://www.udemy.com/certificate/UC-2eef1bd9-478e-47f4-b88e-4d0c774771ef/"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >React Tutorial and Projects Course</a
+                  >
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://ude.my/UC-2730e24c-ddb5-86be-c720301e34ac"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >Next.js & React – The Complete Guide (incl. Two Paths)</a
+                  >
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://freecodecamp.org/certification/lukag99/javascript-algorithms-and-data-structures"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >JavaScript Algorithms and Data Structures</a
+                  >
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://www.udemy.com/certificate/UC-e70c2f2e-1962-436c-a40f-eb34e5b89696/"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >Complete WordPress Developer Course</a
+                  >
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://ude.my/UC-b30b3bcc-7ac5-4520-bed5-567eb109e109"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >React Testing Library and Jest: The Complete Guide</a
+                  >
+                </li>
+                <li class="pl-2 leading-relaxed text-gray-700">
+                  <a
+                    href="https://www.udemy.com/certificate/UC-acee7b69-2458-4817-beb8-f3455706e3a8/"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-gray-900 hover:text-gray-700 no-underline hover:underline transition-colors"
+                    >Understanding Node.js: Core Concepts</a
+                  >
+                </li>
+              </ul>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Luka Gligorevic",
+        "jobTitle": "Mobile & Frontend Developer",
+        "url": "https://gligor99.vercel.app",
+        "image": "https://gligor99.vercel.app/images/profile.jpg",
+        "email": "gligor@mail.com",
+        "telephone": "+38766605909",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Novi Sad",
+          "addressCountry": "Serbia"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/lukagligorevic",
+          "https://github.com/gligor99"
+        ],
+        "knowsAbout": [
+          "React Native",
+          "Expo",
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Node.js",
+          "FastAPI",
+          "REST API",
+          "OpenAPI",
+          "AWS",
+          "SQL",
+          "MongoDB",
+          "Frontend Development",
+          "Mobile Development",
+          "Web Development"
+        ],
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Sinergija University",
+          "url": "https://sinergija.edu.ba",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bijeljina",
+            "addressCountry": "Bosnia and Herzegovina"
+          }
+        },
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certification",
+            "name": "Responsive Web Design",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "freeCodeCamp"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certification",
+            "name": "JavaScript Algorithms and Data Structures",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "freeCodeCamp"
+            }
+          }
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Rhapsody",
+          "url": "https://rhapsodymedia.com",
+          "jobTitle": "Software Developer",
+          "startDate": "2022-06"
+        },
+        "description": "Software Developer with a strong frontend focus, building and shipping scalable mobile and web applications in production environments. Specialised in React Native (Expo) and Next.js, with hands-on experience integrating backend services using Node.js, FastAPI, and AWS."
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Resume",
+        "name": "Luka Gligorevic Resume",
+        "description": "Professional resume of Luka Gligorevic - Mobile & Frontend Developer",
+        "about": {
+          "@type": "Person",
+          "name": "Luka Gligorevic",
+          "jobTitle": "Mobile & Frontend Developer"
+        },
+        "workLocation": {
+          "@type": "Place",
+          "name": "Remote"
+        }
+      }
+    </script>
+  </body>
 </html>
