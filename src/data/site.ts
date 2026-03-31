@@ -115,7 +115,7 @@ export const skills: Skill[] = [
 export const education = {
   degree: "BSc Computer Science",
   institution: "Sinergija University",
-  institutionUrl: "https://sinergija.edu.ba",
+  institutionUrl: "https://www.linkedin.com/school/sinergija-university",
   period: "10/2018 – 07/2022",
   location: "Bijeljina, Bosnia and Herzegovina",
 };
