@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans font-light text-[15px] leading-[1.7] overflow-x-hidden animate-fade-in;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply flex items-center gap-3 mb-8 font-mono text-2xs tracking-[0.15em] uppercase text-text-faint;
+  }
+
+  .section-label::after {
+    content: "";
+    @apply flex-1 h-px bg-border;
+  }
+
+  .skill-tag {
+    @apply font-mono text-xs tracking-[0.06em] text-text-faint border border-border px-3 py-1.5 transition-colors duration-200;
+  }
+
+  .skill-tag:hover {
+    @apply text-accent border-accent/30;
+  }
+
+  .skill-tag-primary {
+    @apply text-accent border-accent/25 bg-accent/[0.04];
+  }
+}

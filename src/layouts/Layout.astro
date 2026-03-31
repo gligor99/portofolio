@@ -1,0 +1,79 @@
+---
+import "@/styles/global.css";
+import { site } from "@/data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "Luka Gligorevic — Mobile & Frontend Developer",
+  description =
+    "Mobile & Frontend Developer specialised in React Native (Expo) and Next.js, building scalable production applications.",
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.toString();
+const robotsContent = noindex ? "noindex, nofollow" : "index, follow";
+const ogImageUrl = Astro.site ? new URL("/og.svg", Astro.site).toString() : "/og.svg";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.title,
+  url: site.linkedin,
+  email: `mailto:${site.email}`,
+  homeLocation: {
+    "@type": "Place",
+    name: site.location,
+  },
+  sameAs: [site.linkedin, site.github],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: `${site.name} — Portfolio`,
+  url: Astro.site ? Astro.site.toString() : canonicalUrl,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content={robotsContent} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Luka Gligorevic" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="theme-color" content="#0B0D10" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={`${site.name} — Portfolio`} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={`${site.name} — Portfolio`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <title>{title}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

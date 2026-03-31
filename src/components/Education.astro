@@ -1,0 +1,46 @@
+---
+import SectionLabel from "@/components/SectionLabel.astro";
+import { education, certificates } from "@/data/site";
+---
+
+<section id="education" class="border-b border-border py-[52px]">
+  <SectionLabel label="Education" />
+
+  <!-- Degree -->
+  <div class="mb-12">
+    <p class="font-display font-semibold text-base text-text mb-1.5">{education.degree}</p>
+    <p class="font-mono text-xs text-text-faint">
+      <a
+        href={education.institutionUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-accent-teal transition-opacity duration-200 hover:opacity-75"
+      >
+        {education.institution}
+      </a>
+      &nbsp;·&nbsp;{education.period}&nbsp;·&nbsp;{education.location}
+    </p>
+  </div>
+
+  <!-- Certificates -->
+  <div>
+    <SectionLabel label="Certificates" />
+    <ul class="flex flex-col gap-2.5">
+      {
+        certificates.map((cert) => (
+          <li>
+            <a
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-2 text-[13px] text-text-faint transition-colors duration-200 hover:text-text"
+            >
+              <span class="w-1 h-1 rounded-full bg-border-hi shrink-0 transition-colors duration-200 group-hover:bg-accent" />
+              {cert.name} — {cert.issuer}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

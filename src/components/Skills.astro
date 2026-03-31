@@ -1,0 +1,18 @@
+---
+import SectionLabel from "@/components/SectionLabel.astro";
+import { skills } from "@/data/site";
+---
+
+<section id="skills" class="border-b border-border py-[52px]">
+  <SectionLabel label="Skills" />
+
+  <div class="flex flex-wrap gap-2">
+    {
+      skills.map((skill) => (
+        <span class:list={["skill-tag", { "skill-tag-primary": skill.primary }]}>
+          {skill.name}
+        </span>
+      ))
+    }
+  </div>
+</section>

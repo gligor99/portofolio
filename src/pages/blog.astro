@@ -1,0 +1,180 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+
+type MediumPost = {
+  title: string;
+  link: string;
+  pubDate?: string;
+  description?: string;
+};
+
+const feedUrl = "https://medium.com/feed/@gligor99";
+
+function decodeCdata(input: string) {
+  return input.replace(/<!\[CDATA\[/g, "").replace(/\]\]>/g, "").trim();
+}
+
+function stripHtml(input: string) {
+  return input
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractTag(block: string, tag: string) {
+  const re = new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`, "i");
+  const m = block.match(re);
+  if (!m) return undefined;
+  return decodeCdata(m[1] ?? "");
+}
+
+function parseRss(xml: string): MediumPost[] {
+  const items = xml.split(/<item>/i).slice(1).map((chunk) => chunk.split(/<\/item>/i)[0] ?? "");
+  const posts: MediumPost[] = [];
+
+  for (const item of items) {
+    const title = extractTag(item, "title") ?? "Untitled";
+    const link = extractTag(item, "link") ?? "";
+    if (!link) continue;
+
+    const pubDate = extractTag(item, "pubDate");
+    const descriptionRaw = extractTag(item, "description");
+    const description = descriptionRaw ? stripHtml(descriptionRaw) : undefined;
+
+    posts.push({ title, link, pubDate, description });
+  }
+
+  return posts;
+}
+
+let posts: MediumPost[] = [];
+let feedError = false;
+
+try {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  const res = await fetch(feedUrl, {
+    signal: controller.signal,
+    headers: {
+      "user-agent": "Astro portfolio build",
+      accept: "application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8",
+    },
+  });
+  clearTimeout(timeout);
+
+  if (!res.ok) throw new Error(`Feed request failed: ${res.status}`);
+  const xml = await res.text();
+  posts = parseRss(xml).slice(0, 12);
+} catch {
+  feedError = true;
+}
+---
+
+<Layout
+  title="Blog — Luka Gligorevic"
+  description="Articles and notes published on Medium."
+>
+  <div class="max-w-content mx-auto px-6">
+    <div class="h-10"></div>
+    <nav
+      class="sticky top-0 z-50 flex border-b border-border overflow-x-auto scrollbar-none relative bg-background/98 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] supports-[backdrop-filter]:bg-background/90"
+    >
+      <a
+        href="/"
+        class="font-mono text-xs tracking-[0.1em] text-text-dim px-5 py-3.5 border-r border-border whitespace-nowrap transition-colors duration-200 hover:text-text first:border-l"
+      >
+        ← back
+      </a>
+
+      <a
+        href={feedUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ml-auto font-mono text-xs tracking-[0.1em] text-accent px-5 py-3.5 border-l border-r border-border whitespace-nowrap transition-colors duration-200 hover:bg-accent/[0.06]"
+      >
+        rss feed
+      </a>
+    </nav>
+
+    <header class="py-12 border-b border-border">
+      <p class="font-mono text-2xs tracking-[0.12em] uppercase text-accent mb-4">
+        Writing
+      </p>
+      <h1 class="font-display font-extrabold leading-none tracking-tight text-text" style="font-size: clamp(40px, 6vw, 56px); letter-spacing: -0.02em;">
+        Blog
+      </h1>
+      <p class="text-sm text-text-dim leading-[1.7] max-w-[70ch] mt-5">
+        Posts pulled from Medium. Click a post to open the full article.
+      </p>
+    </header>
+
+    <main class="py-[52px]">
+      {feedError && (
+        <div class="border border-border px-7 py-6 mb-6">
+          <p class="font-mono text-xs tracking-[0.1em] text-text-faint">
+            Couldn’t load Medium feed during build. This page will populate automatically on deploy.
+          </p>
+        </div>
+      )}
+
+      <div class="flex flex-col gap-3.5">
+        {posts.map((post) => (
+          <a
+            href={post.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative border border-border px-7 py-7 overflow-hidden transition-colors duration-200 hover:border-border-hi"
+            aria-label={`Open: ${post.title}`}
+          >
+            <span
+              class="absolute top-0 left-0 w-[3px] h-full bg-accent origin-bottom scale-y-0 transition-transform duration-300 group-hover:scale-y-100"
+              aria-hidden="true"
+            />
+
+            <div class="flex items-start justify-between gap-3 mb-2.5">
+              <div>
+                <p class="font-display font-bold text-[18px] text-text mb-1">{post.title}</p>
+                {post.pubDate && (
+                  <p class="font-mono text-[10px] tracking-[0.1em] text-text-faint">{post.pubDate}</p>
+                )}
+              </div>
+
+              <span class="text-text-faint mt-1 shrink-0 transition-colors duration-200 group-hover:text-accent">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M3 13L13 3M13 3H7M13 3v6" />
+                </svg>
+              </span>
+            </div>
+
+            {post.description && (
+              <p class="text-sm text-text-dim leading-[1.7] line-clamp-3 max-w-[90ch]">
+                {post.description}
+              </p>
+            )}
+          </a>
+        ))}
+      </div>
+
+      {!feedError && posts.length === 0 && (
+        <div class="border border-border px-7 py-6 mt-6">
+          <p class="font-mono text-xs tracking-[0.1em] text-text-faint">
+            No posts found yet.
+          </p>
+        </div>
+      )}
+    </main>
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>
