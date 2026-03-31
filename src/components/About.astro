@@ -1,0 +1,18 @@
+---
+import SectionLabel from "@/components/SectionLabel.astro";
+import { summary } from "@/data/site";
+
+const highlighted = summary
+  .replace("scalable mobile and web applications", '<strong class="text-text font-medium">scalable mobile and web applications</strong>')
+  .replace("React Native (Expo)", '<strong class="text-text font-medium">React Native (Expo)</strong>')
+  .replace("Next.js", '<strong class="text-text font-medium">Next.js</strong>')
+  .replace("app store releases", '<strong class="text-text font-medium">app store releases</strong>');
+---
+
+<section id="about" class="border-b border-border py-[52px]">
+  <SectionLabel label="About" />
+  <p
+    class="text-base font-light leading-[1.85] text-text-muted max-w-[580px]"
+    set:html={highlighted}
+  />
+</section>

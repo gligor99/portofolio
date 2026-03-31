@@ -1,0 +1,45 @@
+---
+import SectionLabel from "@/components/SectionLabel.astro";
+import { experience } from "@/data/site";
+---
+
+<section id="experience" class="border-b border-border py-[52px]">
+  <SectionLabel label="Experience" />
+
+  {
+    experience.map((job, i) => (
+      <article
+        class:list={[
+          "grid grid-cols-[140px_1fr] gap-x-8 py-6 max-sm:grid-cols-1 max-sm:gap-y-2",
+          i > 0 ? "border-t border-border" : "",
+        ]}
+      >
+        <!-- Meta -->
+        <div class="flex flex-col font-mono text-xs text-text-faint leading-[1.8] pt-0.5 max-sm:flex-row max-sm:flex-wrap max-sm:gap-2">
+          <span>{job.period}</span>
+          <span>{job.type}</span>
+          <a
+            href={job.companyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent-teal mt-1 transition-opacity duration-200 hover:opacity-75 max-sm:mt-0"
+          >
+            {job.company}
+          </a>
+        </div>
+
+        <!-- Body -->
+        <div>
+          <p class="font-display font-semibold text-[17px] text-text mb-3">{job.role}</p>
+          <ul class="flex flex-col gap-1.5">
+            {job.bullets.map((bullet) => (
+              <li class="relative pl-4 text-sm text-text-dim before:content-['-'] before:absolute before:left-0 before:text-border-hi">
+                {bullet}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))
+  }
+</section>

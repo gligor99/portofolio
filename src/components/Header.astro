@@ -1,0 +1,70 @@
+---
+import { site } from "@/data/site";
+---
+
+<header>
+  <div
+    class="grid grid-cols-[1fr_auto] items-end gap-6 py-12 border-b border-border max-sm:grid-cols-1"
+  >
+    <!-- Left: name + tagline -->
+    <div>
+      <p
+        class="flex items-center gap-2 font-mono text-2xs tracking-[0.12em] uppercase text-accent mb-4
+               before:content-[''] before:inline-block before:w-4 before:h-px before:bg-accent before:shrink-0"
+      >
+        Mobile &amp; Frontend Developer
+      </p>
+
+      <h1
+        class="font-display font-extrabold leading-none tracking-tight text-text"
+        style="font-size: clamp(44px, 8vw, 68px); letter-spacing: -0.02em;"
+      >
+        {site.name.split(" ")[0]}<br />
+        <span class="text-text-faint font-normal">{site.name.split(" ")[1]}</span>
+      </h1>
+
+      {
+        site.available && (
+          <p class="inline-flex items-center gap-1.5 font-mono text-2xs tracking-[0.1em] text-accent-teal mt-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-teal animate-pulse shrink-0" />
+            available for remote work
+          </p>
+        )
+      }
+    </div>
+
+    <!-- Right: contact links -->
+    <address
+      class="flex flex-col gap-2 pb-1.5 text-right not-italic max-sm:flex-row max-sm:flex-wrap max-sm:text-left"
+    >
+      <a
+        href={`mailto:${site.email}`}
+        class="font-mono text-xs tracking-[0.06em] text-text-faint transition-colors duration-200 hover:text-accent"
+      >
+        {site.email}
+      </a>
+      <a
+        href={`tel:${site.phone.replace(/\s/g, "")}`}
+        class="font-mono text-xs tracking-[0.06em] text-text-faint transition-colors duration-200 hover:text-accent"
+      >
+        {site.phone}
+      </a>
+      <a
+        href={site.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs tracking-[0.06em] text-text-faint transition-colors duration-200 hover:text-accent"
+      >
+        linkedin
+      </a>
+      <a
+        href={site.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs tracking-[0.06em] text-text-faint transition-colors duration-200 hover:text-accent"
+      >
+        github
+      </a>
+    </address>
+  </div>
+</header>

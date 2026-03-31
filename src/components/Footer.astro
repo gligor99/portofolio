@@ -1,0 +1,54 @@
+---
+import { site } from "@/data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="flex items-center justify-between py-8 max-sm:flex-col max-sm:items-start max-sm:gap-4">
+  <span class="font-mono text-xs text-text-faint">
+    {site.name} · {year}
+  </span>
+
+  <nav class="flex items-center gap-5" aria-label="Footer links">
+    <a
+      href={site.cvUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-1.5 font-mono text-xs text-accent transition-opacity duration-200 hover:opacity-75"
+    >
+      <svg
+        class="w-2.5 h-2.5 shrink-0"
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path d="M8 2v8M4 7l4 4 4-4M2 12h12"></path>
+      </svg>
+      download cv
+    </a>
+    <a
+      href={`mailto:${site.email}`}
+      class="font-mono text-xs text-text-faint transition-colors duration-200 hover:text-accent"
+    >
+      email
+    </a>
+    <a
+      href={site.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-mono text-xs text-text-faint transition-colors duration-200 hover:text-accent"
+    >
+      linkedin
+    </a>
+    <a
+      href={site.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-mono text-xs text-text-faint transition-colors duration-200 hover:text-accent"
+    >
+      github
+    </a>
+  </nav>
+</footer>

@@ -1,0 +1,62 @@
+---
+import { site } from "@/data/site";
+
+const links = [
+  { href: "/#about", label: "about" },
+  { href: "/#experience", label: "exp." },
+  { href: "/#projects", label: "projects" },
+  { href: "/#skills", label: "skills" },
+  { href: "/#education", label: "edu." },
+];
+---
+
+<div class="h-10"></div>
+<nav
+  class="sticky top-0 z-50 flex border-b border-border overflow-x-auto scrollbar-none relative bg-background/98 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] supports-[backdrop-filter]:bg-background/90"
+>
+  {
+    links.map(({ href, label }) => (
+      <a
+        href={href}
+        class="font-mono text-xs tracking-[0.1em] text-text-dim px-5 py-3.5 border-r border-border whitespace-nowrap transition-colors duration-200 hover:text-text first:border-l"
+      >
+        {label}
+      </a>
+    ))
+  }
+
+  <a
+    href="/blog"
+    class="ml-auto font-mono text-xs tracking-[0.1em] text-text-dim px-5 py-3.5 border-l border-border whitespace-nowrap transition-colors duration-200 hover:text-text"
+  >
+    blog
+  </a>
+
+  <a
+    href={site.cvUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center gap-1.5 font-mono text-xs tracking-[0.1em] text-accent px-5 py-3.5 border-l border-r border-border whitespace-nowrap transition-colors duration-200 hover:bg-accent/[0.06]"
+  >
+    <svg
+      class="w-2.5 h-2.5 shrink-0"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <path d="M8 2v8M4 7l4 4 4-4M2 12h12"></path>
+    </svg>
+    download cv
+  </a>
+</nav>
+
+<style>
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>

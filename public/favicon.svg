@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="#0B0D10"/>
+  <text
+    x="64"
+    y="74"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="url(#g)"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace"
+    font-weight="900"
+    letter-spacing="-4"
+  >
+    <tspan font-size="74">G</tspan><tspan font-size="46" dx="0">99</tspan>
+  </text>
+</svg>
