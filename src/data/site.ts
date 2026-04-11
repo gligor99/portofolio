@@ -5,7 +5,7 @@ export const site = {
   phone: "+387 66 605 909",
   location: "Bijeljina, Bosnia and Herzegovina",
   available: true,
-  cvUrl: "/assets/resume/LukaGligorevic-Resume-CV.pdf",
+  cvUrl: "/assets/resume/LukaGligorevic-CV.pdf",
   linkedin: "https://linkedin.com/in/lukagligorevic",
   github: "https://github.com/gligor99",
 } as const;
