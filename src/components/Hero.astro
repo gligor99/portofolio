@@ -1,0 +1,35 @@
+---
+import PlannerPhone from './PlannerPhone.astro';
+import { contact } from '../data/content';
+
+const ghost =
+  'inline-flex min-h-12 items-center border border-line-strong px-5 tracking-[0.04em] no-underline uppercase';
+---
+
+<section
+  class="flex flex-wrap items-end gap-x-10 gap-y-12 px-[clamp(20px,4vw,56px)] pt-[clamp(40px,7vw,96px)] pb-[clamp(48px,6vw,88px)]"
+>
+  <div class="flex min-w-0 flex-[1_1_560px] flex-col gap-8">
+    <div class="font-mono text-[13px] text-muted">
+      // 4+ years shipping to production<span class="animate-blink text-accent motion-reduce:animate-none">_</span>
+    </div>
+    <h1 class="display text-[clamp(76px,15vw,232px)] leading-[0.8] tracking-[-0.02em]">
+      Luka<br /><span class="text-accent">Gligor</span>evic
+    </h1>
+    <p class="max-w-[620px] font-serif text-[clamp(26px,3.2vw,40px)] leading-[1.15]">
+      I build mobile apps and web platforms <em class="text-muted">— and I take them all the way to the App Store.</em>
+    </p>
+    <div class="flex flex-wrap gap-2.5 font-mono text-[13px]">
+      <a
+        href={`mailto:${contact.email}`}
+        class="inline-flex min-h-12 items-center bg-accent px-[22px] font-bold tracking-[0.04em] text-ink no-underline uppercase hover:text-ink hover:brightness-110"
+      >
+        Start a project →
+      </a>
+      <a href={contact.github} class={ghost}>GitHub ↗</a>
+      <a href={contact.linkedin} class={ghost}>LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <PlannerPhone />
+</section>

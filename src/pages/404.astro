@@ -1,16 +1,18 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="404 — Luka Gligorevic" noindex>
-  <div class="max-w-content mx-auto px-6 min-h-screen flex flex-col justify-center gap-3">
-    <p class="font-mono text-2xs tracking-[0.15em] uppercase text-text-faint">404</p>
-    <p class="font-display font-bold text-[32px] text-text">Page not found.</p>
+<Layout title="404 — Page not found · Luka Gligorevic" description="This page doesn't exist." noindex>
+  <main class="flex min-h-screen flex-col justify-center gap-8 px-[clamp(20px,4vw,56px)] py-20">
+    <div class="font-mono text-[13px] text-muted">// 404 — nothing shipped here</div>
+    <h1 class="display text-[clamp(76px,15vw,232px)] leading-[0.8]">
+      Lost<span class="text-accent">?</span>
+    </h1>
     <a
       href="/"
-      class="font-mono text-xs tracking-[0.1em] text-accent mt-2 transition-opacity duration-200 hover:opacity-75"
+      class="inline-flex min-h-12 items-center self-start bg-accent px-[22px] font-mono text-[13px] font-bold tracking-[0.04em] text-ink no-underline uppercase hover:text-ink hover:brightness-110"
     >
-      ← back home
+      ← Back home
     </a>
-  </div>
+  </main>
 </Layout>

@@ -1,0 +1,117 @@
+---
+import { site } from '../data/site';
+import { contact, services } from '../data/content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+}
+
+const { title = site.title, description = site.description, image = site.ogImage, noindex = false } = Astro.props;
+
+const origin = Astro.site ?? Astro.url;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const imageUrl = new URL(image, origin).href;
+const home = new URL('/', origin).href;
+
+const personId = `${home}#person`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.name,
+      url: home,
+      image: imageUrl,
+      jobTitle: site.jobTitle,
+      email: `mailto:${contact.email}`,
+      telephone: contact.phone.replace(/\s/g, ''),
+      address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: site.country },
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Sinergija University' },
+      knowsAbout: site.skills,
+      sameAs: site.sameAs,
+      worksFor: { '@id': `${home}#studio` },
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${home}#studio`,
+      name: site.studio,
+      url: home,
+      image: imageUrl,
+      founder: { '@id': personId },
+      email: contact.email,
+      telephone: contact.phone.replace(/\s/g, ''),
+      address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: site.country },
+      areaServed: 'Worldwide',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Development services',
+        itemListElement: services.map((s) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s.title, description: s.pitch },
+        })),
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${home}#website`,
+      url: home,
+      name: site.name,
+      description: site.description,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      isPartOf: { '@id': `${home}#website` },
+      mainEntity: { '@id': personId },
+      inLanguage: 'en',
+    },
+  ],
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+<meta name="author" content={site.name} />
+<meta name="theme-color" content={site.themeColor} />
+<meta name="color-scheme" content="dark" />
+<meta name="format-detection" content="telephone=no" />
+
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<meta property="og:type" content="profile" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={site.ogImageAlt} />
+<meta property="profile:first_name" content="Luka" />
+<meta property="profile:last_name" content="Gligorevic" />
+<meta property="profile:username" content="gligor99" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={site.ogImageAlt} />
+
+{!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

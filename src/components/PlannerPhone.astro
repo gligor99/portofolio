@@ -1,0 +1,60 @@
+---
+// Static recreation of the 24h planner screen from Pretty Perfect Products.
+const hours = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00'];
+const block = 'absolute box-border rounded-lg px-[9px] py-1.5 font-sans text-[11px] font-semibold';
+const time = 'font-mono text-[9px] font-normal';
+---
+
+<figure class="mx-auto flex flex-none flex-col items-center gap-5">
+  <div
+    class="box-border h-[590px] w-[290px] -rotate-4 rounded-[46px] bg-[#1a1a1d] p-[11px] shadow-[0_40px_80px_rgba(0,0,0,0.6),0_0_0_1px_#2e2e33]"
+  >
+    <div class="relative size-full overflow-hidden rounded-[36px] bg-[#f3f0e8] text-[#17171a]">
+      <div class="absolute top-2.5 left-1/2 -ml-[45px] h-[26px] w-[90px] rounded-[13px] bg-ink"></div>
+      <div class="absolute top-[52px] right-[18px] left-[18px] flex items-baseline justify-between">
+        <span class="text-[26px] font-extrabold tracking-[-0.01em] uppercase font-stretch-75%">Today</span>
+        <span class="font-mono text-[10px] text-[#6b6862]">24H PLANNER</span>
+      </div>
+
+      <div class="absolute inset-x-0 top-[100px] bottom-0 font-mono text-[9px] text-[#8c8880]">
+        {
+          hours.map((h, i) => (
+            <>
+              <div class="absolute left-3.5" style={`top:${i * 80}px`}>{h}</div>
+              <div class="absolute right-3.5 left-[52px] h-px bg-[#ddd8cc]" style={`top:${i * 80 + 6}px`} />
+            </>
+          ))
+        }
+
+        <div class:list={[block, 'top-5 right-4 left-[54px] h-[46px] bg-[#17171a] text-[#f3f0e8]']}>
+          Morning run<div class:list={[time, 'opacity-70']}>08:10 – 08:45</div>
+        </div>
+        <div class:list={[block, 'top-[92px] left-[54px] h-[150px] w-[98px] bg-accent font-bold text-ink']}>
+          Deep work<div class={time}>09:05 – 10:57</div>
+        </div>
+        <div class:list={[block, 'top-[132px] right-4 left-[156px] h-[54px] bg-[#cfe3d4]']}>
+          Standup<div class:list={[time, 'text-[#4a5a4e]']}>09:35 – 10:15</div>
+        </div>
+        <div class:list={[block, 'top-[192px] right-4 left-[156px] h-10 bg-[#e4dcf2]']}>Code review</div>
+        <div class:list={[block, 'top-[262px] right-4 left-[54px] h-[60px] bg-[#f7d9a8]']}>
+          Meal prep<div class:list={[time, 'text-[#6b5530]']}>11:12 – 11:58</div>
+        </div>
+        <div
+          class:list={[
+            block,
+            'top-[336px] right-4 left-[54px] h-[46px] translate-x-2.5 -rotate-2 border-[1.5px] border-dashed border-[#17171a] bg-white shadow-[0_10px_20px_rgba(0,0,0,0.15)]',
+          ]}
+        >
+          Budget review<div class:list={[time, 'text-[#6b6862]']}>dragging…</div>
+        </div>
+
+        <div class="absolute top-[150px] right-2.5 left-[46px] h-0.5 animate-now bg-[#e5341a] motion-reduce:animate-none">
+          <div class="absolute -top-[3px] -left-1 size-2 rounded-full bg-[#e5341a]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption class="max-w-[270px] text-center font-mono text-[11px] leading-[1.6] text-muted">
+    ↑ Recreation of the 24h planner I built — per-minute precision, collision detection, drag &amp; drop.
+  </figcaption>
+</figure>

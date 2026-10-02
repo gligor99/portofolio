@@ -1,0 +1,17 @@
+---
+import { marquee } from '../data/content';
+
+const line = marquee.join(' ✱ ') + ' ✱';
+---
+
+<div
+  aria-hidden="true"
+  class="-mx-5 -rotate-[1.2deg] overflow-hidden border-y border-ink bg-accent py-4 text-ink"
+>
+  <div
+    class="display flex w-max animate-marquee text-[clamp(28px,4vw,48px)] leading-none whitespace-nowrap motion-reduce:animate-none"
+  >
+    <span class="pr-8">{line}</span>
+    <span class="pr-8">{line}</span>
+  </div>
+</div>

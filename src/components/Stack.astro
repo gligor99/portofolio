@@ -1,0 +1,127 @@
+---
+import { layers, pad } from '../data/content';
+
+const toolCount = layers.reduce((n, l) => n + l.tools.length, 0);
+const stat = 'display text-[64px] leading-[0.9]';
+const statLabel = 'text-[11px] tracking-[0.06em] text-muted';
+---
+
+<section
+  id="stack"
+  data-stack
+  class="relative overflow-hidden border-b border-line px-[clamp(20px,4vw,56px)] pt-[clamp(72px,9vw,128px)] pb-[clamp(56px,7vw,96px)]"
+>
+  <div aria-hidden="true" class="absolute inset-y-0 right-[clamp(20px,4vw,56px)] w-px bg-[#1e1e22]"></div>
+
+  <div class="mb-14 flex flex-wrap items-end justify-between gap-6">
+    <h2 class="display text-[clamp(56px,9vw,128px)] leading-[0.85]">
+      The full<br /><span class="font-serif font-normal text-accent normal-case italic font-stretch-100%">stack</span>, literally
+    </h2>
+    <div class="flex gap-8 font-mono uppercase">
+      <div class="flex flex-col gap-0.5"><span class={stat}>{pad(layers.length)}</span><span class={statLabel}>layers</span></div>
+      <div class="flex flex-col gap-0.5">
+        <span class:list={[stat, 'text-accent']}>{toolCount}</span><span class={statLabel}>tools in production</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-stretch gap-x-14 gap-y-12">
+    <div class="relative min-w-0 flex-[1_1_520px] pl-7">
+      <div aria-hidden="true" class="absolute top-2 bottom-2 left-0 w-0.5 overflow-hidden bg-line">
+        <div class="absolute left-0 h-[90px] w-0.5 animate-flow bg-accent motion-reduce:animate-none"></div>
+      </div>
+      <div class="mb-3 font-mono text-[11px] tracking-[0.06em] text-muted uppercase">↓ from the store listing down to the metal</div>
+      {
+        layers.map((l, i) => (
+          <button
+            type="button"
+            data-layer={i}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+            class="group flex min-h-12 w-full cursor-pointer items-baseline gap-[18px] py-1 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          >
+            <span class="flex-[0_0_28px] font-mono text-xs text-dim group-aria-pressed:text-accent">{pad(i + 1)}</span>
+            <span class="display text-[clamp(56px,8.4vw,128px)] leading-[0.88] tracking-[-0.01em] text-transparent [-webkit-text-stroke:1.5px_#4a4a52] transition-[color,transform,-webkit-text-stroke-color] duration-[450ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:[-webkit-text-stroke-color:var(--color-paper)] group-aria-pressed:translate-x-6 group-aria-pressed:text-accent group-aria-pressed:[-webkit-text-stroke-width:0]">
+              {l.name}
+            </span>
+            <span class="font-mono text-[11px] text-accent opacity-0 transition-opacity group-aria-pressed:opacity-100">◀ you are here</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="flex min-h-[520px] flex-[1_1_380px] flex-col border border-line-strong bg-panel">
+      <div class="h-1.5 bg-accent"></div>
+      <div
+        class="flex items-center justify-between border-b border-line px-6 py-4 font-mono text-[11px] tracking-[0.06em] text-muted uppercase"
+      >
+        <span>layer <span data-layer-num>01</span> / {pad(layers.length)}</span>
+        <button
+          type="button"
+          data-auto
+          aria-pressed="true"
+          class="group inline-flex min-h-11 cursor-pointer items-center gap-2 px-1 text-paper uppercase"
+        >
+          <span class="size-[7px] rounded-full bg-dim group-aria-pressed:bg-[#3ddc84]"></span>
+          <span class="hidden group-aria-pressed:inline">Auto-play on</span>
+          <span class="group-aria-pressed:hidden">Paused</span>
+        </button>
+      </div>
+      {
+        layers.map((l, i) => (
+          <div data-panel={i} hidden={i !== 0} class="flex grow flex-col gap-[22px] px-6 pt-8 pb-7">
+            <div class="display text-[clamp(64px,7vw,104px)] leading-[0.85] text-accent">{l.name}</div>
+            <p class="font-serif text-[clamp(24px,2.4vw,30px)] leading-[1.2] italic">{l.proof}</p>
+            <div class="mt-auto grid grid-cols-2 gap-px border border-line bg-line">
+              {l.tools.map((t, j) => (
+                <div class="box-border flex min-h-16 flex-col gap-1 bg-panel p-3.5">
+                  <span class="font-mono text-[10px] text-dim">{pad(j + 1)}</span>
+                  <span class="text-base leading-[1.2] font-semibold">{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div
+    class="mt-14 flex flex-wrap justify-between gap-3 border-t border-line pt-5 font-mono text-xs tracking-[0.04em] text-muted uppercase"
+  >
+    <span>BSc Computer Science &amp; Informatics — Sinergija University, 2018 – 2022</span>
+    <span>Certified: Next.js &amp; React · Node.js core · Testing (RTL + Jest) · Algorithms</span>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-stack]');
+  if (root) {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-layer]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-panel]')];
+    const num = root.querySelector('[data-layer-num]')!;
+    const autoBtn = root.querySelector<HTMLButtonElement>('[data-auto]')!;
+    let current = 0;
+    let auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const show = (i: number) => {
+      current = i;
+      buttons.forEach((b, j) => b.setAttribute('aria-pressed', String(j === i)));
+      panels.forEach((p, j) => (p.hidden = j !== i));
+      num.textContent = String(i + 1).padStart(2, '0');
+    };
+    const setAuto = (on: boolean) => {
+      auto = on;
+      autoBtn.setAttribute('aria-pressed', String(on));
+    };
+
+    setAuto(auto);
+    buttons.forEach((b, i) =>
+      b.addEventListener('click', () => {
+        setAuto(false);
+        show(i);
+      }),
+    );
+    autoBtn.addEventListener('click', () => setAuto(!auto));
+    setInterval(() => auto && show((current + 1) % buttons.length), 3200);
+  }
+</script>

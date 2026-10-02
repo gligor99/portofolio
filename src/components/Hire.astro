@@ -1,0 +1,76 @@
+---
+import { contact, services, steps, pad } from '../data/content';
+---
+
+<section id="hire" class="bg-paper px-[clamp(20px,4vw,56px)] py-[clamp(72px,9vw,128px)] text-ink">
+  <div class="mb-14 flex flex-wrap items-end justify-between gap-6">
+    <h2 class="display text-[clamp(56px,9vw,128px)] leading-[0.85]">
+      Work<br />with <span class="font-serif font-normal text-accent-deep normal-case italic font-stretch-100%">me</span>
+    </h2>
+    <div class="flex max-w-[340px] flex-col gap-2.5">
+      <div
+        class="inline-flex items-center gap-2.5 self-start bg-ink px-3.5 py-2 font-mono text-xs tracking-[0.06em] text-paper uppercase"
+      >
+        <span class="size-[7px] rounded-full bg-accent"></span>G99 Labs
+      </div>
+      <p class="text-base leading-[1.55] text-[#3a3833]">
+        Contract development through my own registered studio in Bosnia and Herzegovina — B2B contracts and invoicing
+        for clients anywhere.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] border-t-2 border-l-2 border-ink">
+    {
+      services.map((s, i) => (
+        <article class="box-border flex min-h-[380px] flex-col gap-[18px] border-r-2 border-b-2 border-ink px-7 py-8 transition-colors duration-300 hover:bg-ink hover:text-paper">
+          <div class="flex items-baseline justify-between font-mono text-xs tracking-[0.05em] uppercase">
+            <span>{pad(i + 1)}</span>
+            <span class="opacity-70">{s.tag}</span>
+          </div>
+          <h3 class="display text-[clamp(40px,4.4vw,60px)] leading-[0.88]">{s.title}</h3>
+          <p class="font-serif text-[22px] leading-[1.25] italic">{s.pitch}</p>
+          <ul class="mt-auto flex flex-col gap-2 text-[15px] leading-[1.45]">
+            {s.items.map((it) => (
+              <li class="flex gap-2.5">
+                <span class="flex-none font-mono">+</span>
+                <span>{it}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="mt-[72px]">
+    <div class="mb-5 font-mono text-xs tracking-[0.06em] text-[#55524c] uppercase">How a project runs</div>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
+      {
+        steps.map((st, i) => (
+          <div class="flex flex-col gap-3 pr-6 pb-6">
+            <div class="flex items-center gap-3">
+              <span class="display text-[72px] leading-[0.8]">{pad(i + 1)}</span>
+              <span class="h-0.5 grow bg-ink" />
+            </div>
+            <div class="text-2xl leading-none font-extrabold uppercase font-stretch-75%">{st.title}</div>
+            <div class="text-[15px] leading-normal text-[#3a3833]">{st.text}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <a
+    href={`mailto:${contact.email}?subject=Project%20inquiry`}
+    class="mt-14 flex flex-wrap items-center justify-between gap-4 bg-ink px-[clamp(20px,3vw,40px)] py-[clamp(24px,3vw,40px)] text-paper no-underline transition-colors duration-300 hover:bg-[#1c1c20] hover:text-paper"
+  >
+    <span class="display text-[clamp(36px,5.5vw,80px)] leading-[0.9]">
+      Book a scope call <span class="text-accent">→</span>
+    </span>
+    <span class="flex flex-col gap-1 text-right font-mono text-[13px]">
+      <span>{contact.email}</span>
+      <span class="text-muted">{contact.phone}</span>
+    </span>
+  </a>
+</section>
